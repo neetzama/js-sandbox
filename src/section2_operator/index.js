@@ -82,7 +82,24 @@ console.log(-9 >>> 2) // -3
 console.log(-0b1001 >>> 2) // 0011_1111_1111_1111_1111_1111_1111_1101
 
 
+/*
+* 論理演算子
+*/
 
+// AND演算子
+// 評価する際に真偽値へ暗黙的に型変換を行っている。
+// true の場合は右辺が返される。false の場合はすぐさま false が返される。
+const result1 = true && "右辺の値";
+console.log("result1", result1); // "右辺が表示される"
+const result2 = false && "右辺の値";
+console.log("result2", result2); // false
+
+// OR演算子
+// false の場合は右辺が返される。true の場合はすぐさま true が返される。
+const result3 = false || "右辺の値";
+console.log("result3", result3); // "右辺が表示される"
+const result4 = true || "右辺の値";
+console.log("result4", true); // true
 
 
 
