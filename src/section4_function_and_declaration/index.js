@@ -47,3 +47,66 @@ function fn4() {
   // console.log(arguments.map(arg => arg + 10)) // Uncaught TypeError: arguments.map is not a function
 }
 fn4(1, 2, 3)
+
+
+/*
+* 関数式
+* ・関数を値として扱うことができ、この場合、function の右辺の関数名を省略できる。
+*/
+
+const fn5 = function() {
+  return "無名関数（匿名関数）です。";
+}
+console.log(fn5()) // 無名関数（匿名関数）です。
+
+// function の右辺に関数名をつけることも可能だが以下のような制約がある
+// ・関数の外から呼び出すことはできず、関数の中のみで呼び出すことが可能である。そのため、再帰処理をする際に利用される。らしい
+const fn6 = function innerFn6(num) {
+  if (num === 0) {
+    return 1;
+  }
+  // innerFn6を再帰的に呼び出している
+  return num * innerFn6(num - 1);
+  // 3 * a
+  // a = 2 * b
+  // b = 1 * c
+  // c = 1  条件分岐「num == 0」内を通る
+}
+console.log(fn6(3))  // 6
+
+
+/*
+* Arrow Function
+* ・arguments 変数が存在しない
+*/
+const fn7 = () => {
+  // console.log("fn7", arguments) // Uncaught ReferenceError: arguments is not defined
+}
+fn7();
+
+
+/*
+* メソッド
+* ・オブジェクトのプロパティに定義してある関数をメソッドと言う
+* ・短縮記法がある。
+*/
+const obj = {
+  method1: function () {
+    console.log("メソッド１")
+  },
+  method2: () => {
+    console.log("メソッド2")
+  }
+};
+
+obj.method1();
+obj.method2();
+
+const obj2 = {
+  method1() {
+    console.log("短縮記法のメソッド１")
+  },
+};
+
+obj2.method1();
+
