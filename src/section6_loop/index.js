@@ -26,3 +26,26 @@ const array = [1, 2, 3];
 for(const num in array) {
   console.log(`${num}:`, array[num])
 }
+
+
+/*
+* for...of文
+* ・Symbol.iterator メソッドで実装された iterable オブジェクトを反復処理できる
+* ・iterable オブジェクトには Array, String, TypedArray, Map, Set, DOM NodeList などが含まれる
+*/
+
+const array2 = [1, 2, 3];
+for(const num of array2) {
+  console.log(num)
+  // 1
+  // 2
+  // 3
+}
+
+const string = "文字列";
+for(const value of string) {
+  console.log(value)
+  // 文
+  // 字
+  // 列
+}
