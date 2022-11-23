@@ -64,3 +64,81 @@ const obj5 = {
 if(obj5.hasOwnProperty("test")) { // true or false
   console.log("obj5 の key名に 'test' が存在する");
 }
+
+
+/*
+* Optional chaining演算子
+* ・評価した値が null または undefined だった場合、undefined を返す。プロパティが存在した場合はその値を返す。
+*/
+const obj6 = {
+  a: {
+    b: "test"
+  }
+}
+
+console.log(obj6?.a?.b) // "test"
+console.log(obj6?.a?.b?.c) // undefined
+
+
+/*
+* プロパティ名は文字列化される
+*/
+const objTest1 = {};
+const keyObject1 = { a: 1 };
+objTest1[keyObject1] = "1";
+console.log(objTest1); // {[object object]: "1"}   object型は文字列化すると [object object] に変換される
+
+const objTest2 = {};
+const keyObject2 = 1;
+objTest2[keyObject2] = "2";
+console.log(objTest2); // {1: "2"}
+
+
+/*
+* Object.assign()
+* ・オブジェクトを複製、マージ可能
+* ・シャローコピーとなる
+* ・マージする場合は target となるオブジェクトも影響を受ける
+* ・複製（target が {}）の場合は特に問題なし
+*/
+
+const obj7 = {
+  name: "originalでやんす"
+}
+
+const copyObj7 = Object.assign({}, obj7);
+console.log(copyObj7) // {name: 'originalでやんす'}
+console.log(obj7 === copyObj7) // false
+
+
+// original にも影響
+const obj8 = {
+  name1: "あるてた"
+}
+
+const obj9 = {
+  name2: "ベンゲル"
+}
+
+const mergedObj = Object.assign(obj8, obj9);
+console.log(mergedObj)  // {name1: 'あるてた', name2: 'ベンゲル'}
+console.log(obj8)  // {name1: 'あるてた', name2: 'ベンゲル'}
+console.log(mergedObj === obj8)  // true
+
+
+// シャローコピーであるため２階層目以降は影響を受ける
+const obj10 = {
+  team: "アーセナル",
+  position: {
+    df: "サリバ"
+  }
+}
+const copyObj10 = Object.assign({}, obj10);
+// １階層目は汚染されていない
+copyObj10.team = "トッテナム";
+console.log(obj10)  // {team: 'アーセナル', position: {…}}
+console.log(copyObj10)  // {team: 'トッテナム', position: {…}}
+// ２階層目以降は汚染される
+copyObj10.position.df = "まや";
+console.log(obj10)  // {team: 'アーセナル', position: {df: "まや"}}
+console.log(copyObj10)  // {team: 'トッテナム', position: {df: "まや"}}
