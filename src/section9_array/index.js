@@ -39,3 +39,34 @@ console.log(array2.at(1));  // "b"
 
 console.log(array2.at(-1));  // "e"
 console.log(array2.at(-2));  // "d"
+
+/*
+* 配列をフラット化
+* ・引数の数値で何段階目をフラットにするか指定する
+* ・Infinity を渡すと全段階をフラットにする
+*/
+const array3 = [[[1, 2], 3], 4];
+console.log(array3.flat());  // [[1, 2], 3, 4]
+console.log(array3.flat(1));  // [[1, 2], 3, 4]
+console.log(array3.flat(2));  // [1, 2, 3, 4]
+console.log(array3.flat(Infinity));  // [1, 2, 3, 4]
+
+
+/*
+* 配列から要素を削除
+* ・splice() メソッド
+* ・length に代入
+* ・空配列を代入
+*/
+// splice() メソッド
+const array4 = ["a", "b", "c", "d", "e"];
+array4.splice(0, array4.length);  // deleteCount に配列の長さ指定することで削除
+console.log(array4);
+// length に代入
+const array5 = ["a", "b", "c", "d", "e"];
+array5.length = 0;
+console.log(array5);
+// 空配列を代入
+let array6 = ["a", "b", "c", "d", "e"];
+array6 = [];
+console.log(array6);
