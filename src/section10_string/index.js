@@ -36,3 +36,13 @@ console.log(str2.at(-1))  // "列"
 console.log(str2.at(-2))  // "字"
 console.log(str2.at(-3))  // "文"
 console.log(str2.at(-4))  // undefined
+
+/*
+* 文字列の比較
+* ・比較演算子や関係演算子は文字列の CodeUnit を比較している。
+*/
+const abc = "ABC";
+const abd = "ABD";
+console.log(abc.codePointAt(2)) // 67
+console.log(abd.codePointAt(2)) // 68
+console.log(abc < abd) // true
