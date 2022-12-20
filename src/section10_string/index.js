@@ -46,3 +46,40 @@ const abd = "ABD";
 console.log(abc.codePointAt(2)) // 67
 console.log(abd.codePointAt(2)) // 68
 console.log(abc < abd) // true
+
+/*
+* 文字列の検索
+* 文字列の検索には主に以下の３つがある。
+* ・マッチした箇所のインデックスを取得
+* ・マッチした文字列の取得
+* ・マッチしたかどうかの真偽値の取得
+*/
+
+// マッチした箇所のインデックスを取得
+// indexOf(), lastIndexOf()メソッドがある
+const str3 = "アーセナルのじゅんいはいちい";
+console.log(str3.indexOf("ル")); // 4
+console.log(str3.indexOf("か")); // -1
+console.log(str3.lastIndexOf("ん")); // 8
+
+// マッチした文字列の取得
+const str4 = "アーセナルは怪我人が多い";
+const target = "多い";
+const index = str4.indexOf(target);
+if(index !== -1) {
+  console.log(`${target}が見つかった`);
+} else {
+  console.log(`${target}が見つからなかった`);
+}
+
+// マッチしたかどうかの真偽値の取得
+const str5 = "アーセナルの放送が有料になった";
+// 指定した文字列で始まるか
+console.log(str5.startsWith("アーセ")); // true
+console.log(str5.startsWith("なった")); // false
+// 指定した文字列で終わるか
+console.log(str5.endsWith("アーセ")); // false
+console.log(str5.startsWith("なった")); // true
+// 含まれているか
+console.log(str5.includes("アーセ")); // true
+console.log(str5.includes("なった")); // true
