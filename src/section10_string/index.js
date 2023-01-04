@@ -83,3 +83,41 @@ console.log(str5.startsWith("なった")); // true
 // 含まれているか
 console.log(str5.includes("アーセ")); // true
 console.log(str5.includes("なった")); // true
+
+
+/*
+* 正規表現オブジェクト
+*/
+
+/*
+* 1. 以下は正規表現での特殊文字である。そのため、文字列として認識させるには \（バックスラッシュ）でエスケープさせる必要がある。
+*    \ ^ $ . * + ? ( ) [ ] { } |
+*
+* 2. 以下の２パターンで表現できる。
+* ・正規表現リテラル
+* ・RegExpコンストラクタ
+*/
+const patternA = /a+/; // 正規表現リテラル
+const patternB = new RegExp("a+"); // RegExpコンストラクタ
+
+/*
+* 3. 正規表現リテラルとRegExpコンストラクタの違いは正規表現が読み込まれるタイミング
+* ・正規表現リテラル -> ソースコードをパースしたタイミング
+* ・RegExpコンストラクタ -> 読み出されたタイミング。特徴を活かして変数と組み合わせた（動的な）正規表現が可能
+*/
+const funcA = () => {
+  // const patternA = /[/; // SyntaxError が発生する
+};
+const funcB = () => {
+  const patternA = new RegExp("/[/"); // funcB() が呼び出されたタイミングでエラーが発生する
+};
+// 変数と組み合わせたパターン
+const spaceCount =  3;
+const pattern = new RegExp(`\\s{${spaceCount}}`);
+
+
+
+
+
+
+
