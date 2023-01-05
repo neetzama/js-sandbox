@@ -115,9 +115,47 @@ const funcB = () => {
 const spaceCount =  3;
 const pattern = new RegExp(`\\s{${spaceCount}}`);
 
+/*
+* 正規表現による検索
+* ・String.prototype.search() -> 一致した最初の index を返す。存在しない場合は -1 を返す。indexOf() の引数を正規表現に置き換えるイメージ
+* ・String.prototype.match() -> 一致した文字列を含めた特殊な配列を返す。gフラグの有無で挙動も返り値も異なる。マッチしない場合は null を返す。
+* ・String.prototype.matchAll() -> 一致するすべての文字列をイテレーターで返す（match() の結果の配列のような形）。
+*                                 ループ処理（for...of, スプレッド, Array.from() など）により値を取り出す。gフラグが無いとエラーを吐く。
+*/
 
+/* search() */
+const searchStr = "アーセナル1234";
+const searchPattern = /[0-9]/;
+console.log(searchStr.search(searchPattern)); // 5
 
+/* match() */
+const matchStr = "ABC あいう DE えお";
+const matchPattern = /[a-zA-Z]+/;
+// gフラグなしでは、最初の結果のみを含んだ特殊な配列を返す
+const matchResults = matchStr.match(matchPattern);
+console.log(matchResults);
+// [
+//    'ABC',  // 一致した文字列。一致した文字列が終了した時点で処理を止めるかも？
+//    index: 0,  // 一致した最初の文字列の index
+//    input: 'ABC あいう DE えお',  // 対象となった全ての文字列
+//    groups: undefined  // あんま分からん
+//  ]
 
+const matchG = "ABC あいう DE えお";
+const matchPatternG = /[a-zA-Z]+/g;
+// gフラグありでは、すべての検索結果を含む配列を返す
+const matchResultsG = matchG.match(matchPatternG);
+console.log(matchResultsG); //  ['ABC', 'DE']
 
-
-
+/* matchAll() */
+const matchAll = "ABC あいう DE えお";
+const matchAllPattern = /[a-zA-Z]+/g;
+// gフラグありでは、すべての検索結果を含む配列を返す
+const matchAllResults = matchAll.matchAll(matchAllPattern);
+[...matchAllResults].forEach(result => {
+  console.log(result);
+})
+// [
+//    ['ABC', index: 0, input: 'ABC あいう DE えお', groups: undefined],
+//    ['DE', index: 8, input: 'ABC あいう DE えお', groups: undefined]
+// ]
