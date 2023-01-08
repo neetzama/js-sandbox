@@ -16,7 +16,7 @@ console.log("🐱".codePointAt(1))  // 56369 <- CodeUnit を返している
 // String.charCodeAt() は文字列から CodeUnit を返してくれる。0 から 65535 までの整数を返す。
 console.log("A".charCodeAt(0))  // 65
 console.log("A".charCodeAt(0).toString(16))  // 41 <- 65 を16進数に変換
-console.log("A".charCodeAt(0).toString(2))  // 41 <- 65 を16進数に変換
+console.log("A".charCodeAt(0).toString(2))  // 1000001 <- 65 を2進数に変換
 console.log("🐱".charCodeAt(0))  // 55357
 console.log("🐱".charCodeAt(1))  // 56369
 // String.fromCharCode() は UTF-16 から文字列を返してくれる。
