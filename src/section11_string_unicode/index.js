@@ -25,3 +25,21 @@ console.log(str2.charCodeAt(0)); // 55356
 console.log(str2.charCodeAt(1)); // 57167
 // String.length は CodeUnit の合計
 console.log(str2.length); // 2
+
+
+/*
+* サロゲートペア
+* ・UTF-16 は以下の範囲のをサロゲートペアに利用している。上位サロゲートと下位サロゲートの CodeUnit が並んだ場合に１つの文字列（CodePoint）として扱う。
+* 　・\uD800 ~ \uDBFF：上位サロゲートの範囲
+* 　・\uDC00 ~ \uDFFF：下位サロゲートの範囲
+* ・CodeUnit のエスケープシーケンス（ \uXXXX ）を２つ並べればサロゲートペアを表現できる。
+* ・ES2015から CodePoint のエスケープシーケンス（ \u{XXXX} ）も使用できる。
+*/
+const str3 = "🐶";
+console.log(str3.charCodeAt(0).toString(16)); // D83D
+console.log(str3.charCodeAt(1).toString(16)); // DC36
+console.log("\uD83D\uDC36"); // "🐶"
+// CodePoint のエスケープシーケンス
+const str3CodePoint = str3.codePointAt(0) // 128054
+console.log(str3CodePoint.toString(16)); // 1F436
+console.log("\u{1F436}"); // "🐶"
